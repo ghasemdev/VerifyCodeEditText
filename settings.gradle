@@ -1,3 +1,3 @@
 include ':VerifyCodeEditText'
 include ':app'
-rootProject.name = "VerifyCodeEditText"
+rootProject.name = "VerifyCodeEditTextTest"
