@@ -1,4 +1,4 @@
-package com.jakode.verifycodeedittext
+package com.jakode.verifycodeedittexttest
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

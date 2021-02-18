@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="VerifyCodeEditText">
+        <attr name="TextSize" format="dimension" />
+        <attr name="TextColor" format="color" />
+        <attr name="TextFont" format="reference" />
+        <attr name="BottomUnSelectedIcon" format="reference" />
+        <attr name="BottomSelectedIcon" format="reference" />
+        <attr name="BottomErrorIcon" format="reference" />
+        <attr name="ViewCount" format="enum">
+            <enum name="Four" value="4" />
+            <enum name="Five" value="5" />
+            <enum name="Six" value="6" />
+        </attr>
+        <attr name="ItemSpaceSize" format="dimension" />
+        <attr name="BottomIconHeight" format="dimension" />
+        <attr name="BottomIconWidth" format="dimension" />
+    </declare-styleable>
+</resources>

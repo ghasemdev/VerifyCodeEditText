@@ -1,4 +1,4 @@
-package com.jakode.verifycodeedittext
+package com.jakode.verifycodeedittexttest
 
 import org.junit.Test
 

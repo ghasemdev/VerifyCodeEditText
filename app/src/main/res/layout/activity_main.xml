@@ -6,13 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.jakode.verifycodeedittext.VerifyCodeEditText
+        android:id="@+id/verifyCodeEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:background="@drawable/stroke"
+        android:paddingBottom="12dp"
+        app:BottomIconWidth="40dp"
+        app:ItemSpaceSize="28dp"
+        app:TextColor="@color/black"
+        app:TextSize="16sp"
+        app:ViewCount="Five"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

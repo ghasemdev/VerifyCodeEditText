@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_color">#000000</color>
+    <color name="bottom_selected_icon">@android:color/holo_blue_light</color>
+    <color name="bottom_unselected_icon">@android:color/darker_gray</color>
+    <color name="bottom_error_icon">@android:color/holo_red_light</color>
+</resources>

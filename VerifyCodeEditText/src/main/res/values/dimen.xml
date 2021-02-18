@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size">18sp</dimen>
+    <dimen name="bottom_icon_height">1dp</dimen>
+    <dimen name="bottom_icon_width">32dp</dimen>
+    <dimen name="item_space_size">18dp</dimen>
+</resources>
