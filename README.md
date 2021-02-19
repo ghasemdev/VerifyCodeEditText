@@ -1,6 +1,5 @@
 # VerifyCodeEditText
 
-***
 [![Release](https://img.shields.io/github/release/jakode2020/VerifyCodeEditText.svg?style=flat)](https://jitpack.io/#jakode2020/VerifyCodeEditText)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.4.30-ff8a0d.svg)](https://kotlinlang.org)
 [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17)
@@ -11,9 +10,10 @@ The use of verify code edit text is to get a one-time code from the user,
 There is no default edit text in Android to get a one-time use code.<br>
 That's why I decided to build a library so that both xml and kotlin could create such input :)
 
-[1]
+![alt text][1]
 
 ### Gradle Setup
+
 ***
 ```gradle
 repositories {
@@ -26,7 +26,7 @@ dependencies {
 ```
 
 ## Usage
-***
+
 ### XML
 
 ```
@@ -61,7 +61,7 @@ change bottom drawable state
  verifyCodeEditText.resetCodeItemLineDrawable()
 ```
 
-[2]
+![alt text][2]
 
 set / get text
 ```
