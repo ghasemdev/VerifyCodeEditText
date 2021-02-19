@@ -3,6 +3,7 @@ package com.jakode.verifycodeedittext
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.InputType
 import android.util.AttributeSet
@@ -18,11 +19,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 
-class VerifyCodeEditText(
-    context: Context,
-    attrs: AttributeSet?,
-    defStyleAttr: Int
-) : LinearLayout(context, attrs, defStyleAttr) {
+class VerifyCodeEditText(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context) : this(context, null)
 
@@ -57,10 +54,8 @@ class VerifyCodeEditText(
     private var bottomIconWidth = 0
 
     init {
-        setupField(attrs, defStyleAttr)
         // Layout Settings
         orientation = HORIZONTAL
-        layoutDirection = LAYOUT_DIRECTION_LTR
         gravity = Gravity.CENTER
         isFocusableInTouchMode = true
 
@@ -68,7 +63,13 @@ class VerifyCodeEditText(
         if (!::stringBuilder.isInitialized) stringBuilder = StringBuilder()
         if (!::viewList.isInitialized) viewList = ArrayList()
 
-        // Setup Bottom Icons
+        setupField(attrs, defStyleAttr) // Setup filed
+        setupBottomIcon() // Setup Bottom Icons
+    }
+
+    private fun setupBottomIcon() {
+        viewList.forEach { removeView(it) }
+        viewList.clear()
         for (i in 0 until viewCount) {
             val underLineCodeView: TextView = getUnderLineIcon(i)
             viewList.add(underLineCodeView)
@@ -210,4 +211,66 @@ class VerifyCodeEditText(
 
     private fun getColorFromRes(colorRes: Int) = ContextCompat.getColor(context, colorRes)
     private fun getDrawableFromRes(drawableRes: Int) = ContextCompat.getDrawable(context, drawableRes)
+
+    class Builder(initialize: Builder.() -> Unit) {
+        init { initialize() }
+
+        private var textHolder: Text? = null
+        private var bottomIconHolder: BottomIcon? = null
+        private var verifyCell: VerifyCell? = null
+
+        fun text(initialize: Text.() -> Unit) {
+            textHolder = Text().apply { initialize() }
+        }
+
+        fun bottomIcon(initialize: BottomIcon.() -> Unit) {
+            bottomIconHolder = BottomIcon().apply { initialize() }
+        }
+
+        fun verifyCell(initialize: VerifyCell.() -> Unit) {
+            verifyCell = VerifyCell().apply { initialize() }
+        }
+
+        fun build(context: Context): VerifyCodeEditText {
+            return VerifyCodeEditText(context).apply {
+                textHolder?.apply {
+                    textSize = size
+                    textColor = color
+                    textFontRes = fontRes
+                }
+                bottomIconHolder?.apply {
+                    bottomSelectedIcon = selectedIcon
+                    bottomUnSelectedIcon = unSelectedIcon
+                    bottomErrorIcon = errorIcon
+                    bottomIconHeight = iconHeight
+                    bottomIconWidth = iconWidth
+                }
+                verifyCell?.apply {
+                    viewCount = count.value
+                    itemCenterSpaceSize = spaceSize
+                }
+            }.also { it.setupBottomIcon() }
+        }
+
+        data class Text(
+            var size: Float = 18f,
+            var color: Int = Color.parseColor("#000000"),
+            var fontRes: Int = Int.MIN_VALUE
+        )
+
+        data class BottomIcon(
+            var selectedIcon: Drawable? = null,
+            var unSelectedIcon: Drawable? = null,
+            var errorIcon: Drawable? = null,
+            var iconHeight: Int = 1,
+            var iconWidth: Int = 32,
+        )
+
+        data class VerifyCell(
+            var count: ViewCount = ViewCount.Four,
+            var spaceSize: Int = 18
+        )
+
+        enum class ViewCount(val value: Int) { Four(4), Five(5), Six(6) }
+    }
 }
