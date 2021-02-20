@@ -33,7 +33,7 @@ dependencies {
  <com.jakode.verifycodeedittext.VerifyCodeEditText
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     android:layoutDirection="ltr" (RTL language need this fiels)
+     android:layoutDirection="ltr" (RTL language need this field)
      android:paddingBottom="12dp"
      app:BottomErrorIcon="@drawable/bottom_error_icon"
      app:BottomIconHeight="2dp"
@@ -94,7 +94,7 @@ set / get text
 ### License
 ***
 ```
-Copyright Jakode2020 
+Copyright 2021 Jakode2020 
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
