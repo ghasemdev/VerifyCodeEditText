@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.jakode2020:VerifyCodeEditText:1.1'
+    implementation 'com.github.jakode2020:VerifyCodeEditText:1.2.0'
 }
 ```
 
