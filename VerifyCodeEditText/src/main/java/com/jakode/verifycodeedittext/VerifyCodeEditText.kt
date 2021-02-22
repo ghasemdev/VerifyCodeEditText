@@ -34,9 +34,9 @@ class VerifyCodeEditText(context: Context, attrs: AttributeSet?, defStyleAttr: I
             stringBuilder = StringBuilder(value)
             resetCodeShowView()
         }
-    private var textSize = 0f
-    private var textColor = 0
-    private var textFontRes = 0
+    private var mTextSize = 0f
+    private var mTextColor = 0
+    private var mTextFontRes = 0
 
     // Icon
     private var bottomSelectedIcon: Drawable? = null
@@ -80,11 +80,11 @@ class VerifyCodeEditText(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private fun setupField(attrs: AttributeSet?, defStyleAttr: Int) {
         val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.VerifyCodeEditText, defStyleAttr, 0)
         // Text Size
-        textSize = typedArray.getDimensionPixelSize(R.styleable.VerifyCodeEditText_TextSize, resources.getDimensionPixelSize(R.dimen.text_size)).toFloat()
+        mTextSize = typedArray.getDimensionPixelSize(R.styleable.VerifyCodeEditText_TextSize, resources.getDimensionPixelSize(R.dimen.text_size)).toFloat()
         // Text Color
-        textColor = typedArray.getColor(R.styleable.VerifyCodeEditText_TextColor, getColorFromRes(R.color.text_color))
+        mTextColor = typedArray.getColor(R.styleable.VerifyCodeEditText_TextColor, getColorFromRes(R.color.text_color))
         // Text Font
-        textFontRes = typedArray.getResourceId(R.styleable.VerifyCodeEditText_TextFont, Int.MIN_VALUE)
+        mTextFontRes = typedArray.getResourceId(R.styleable.VerifyCodeEditText_TextFont, Int.MIN_VALUE)
         // Bottom UnSelected Icon
         bottomUnSelectedIcon = typedArray.getDrawable(R.styleable.VerifyCodeEditText_BottomUnSelectedIcon)
         if (bottomUnSelectedIcon == null) {
@@ -113,12 +113,12 @@ class VerifyCodeEditText(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
     private fun getUnderLineIcon(index: Int): TextView {
         return TextView(context).apply {
-            textSize = textSize
+            textSize = mTextSize
             gravity = Gravity.CENTER
-            if (textFontRes != Int.MIN_VALUE) {
-                typeface = ResourcesCompat.getFont(context, textFontRes)
+            if (mTextFontRes != Int.MIN_VALUE) {
+                typeface = ResourcesCompat.getFont(context, mTextFontRes)
             }
-            setTextColor(textColor)
+            setTextColor(mTextColor)
             val padding: Int = itemCenterSpaceSize / 2
             setPadding(padding, 0, padding, 0)
         }.also {
@@ -148,16 +148,16 @@ class VerifyCodeEditText(context: Context, attrs: AttributeSet?, defStyleAttr: I
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (!::stringBuilder.isInitialized) stringBuilder = StringBuilder()
         // KeyCode 67 is Delete button
-        if (keyCode == 67 && stringBuilder.isNotEmpty()) {
+        if (keyCode == KeyEvent.KEYCODE_DEL && stringBuilder.isNotEmpty()) {
             stringBuilder.deleteCharAt(stringBuilder.length - 1)
             resetCodeShowView()
-        } else if (keyCode in 7..16 && stringBuilder.length < viewList.size) {
-            // KeyCode 7..16 is 0..9 number button
-            stringBuilder.append(keyCode - 7)
+        } else if (event?.number?.toInt() in 48..57 && stringBuilder.length < viewList.size) {
+            // ascii code 48..57 is 0..9 number
+            stringBuilder.append(event?.number)
             resetCodeShowView()
         }
         // KeyCOde 66 is Enter button
-        if (stringBuilder.length >= viewList.size || keyCode == 66) {
+        if (stringBuilder.length >= viewList.size || keyCode == KeyEvent.KEYCODE_ENTER) {
             // Close Keyboard
             val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(windowToken, 0)
@@ -234,9 +234,9 @@ class VerifyCodeEditText(context: Context, attrs: AttributeSet?, defStyleAttr: I
         fun build(context: Context): VerifyCodeEditText {
             return VerifyCodeEditText(context).apply {
                 textHolder?.apply {
-                    textSize = size
-                    textColor = color
-                    textFontRes = fontRes
+                    mTextSize = size
+                    mTextColor = color
+                    mTextFontRes = fontRes
                 }
                 bottomIconHolder?.apply {
                     bottomSelectedIcon = selectedIcon
