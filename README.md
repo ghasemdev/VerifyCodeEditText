@@ -3,8 +3,6 @@
 [![Release](https://img.shields.io/github/release/jakode2020/VerifyCodeEditText.svg?style=flat)](https://jitpack.io/#jakode2020/VerifyCodeEditText)
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.4.30-ff8a0d.svg)](https://kotlinlang.org)
 [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17)
-[![Telegram Chanel](https://img.shields.io/badge/Telegram-@jakode2020-0373fc.svg?style=flat)](http://t.me/jakode2020)
-[![Instagram](https://img.shields.io/badge/Instagram-@jakode2020-ff12d7.svg?style=flat)](http://www.instagram.com/jakode2020?r=nametag)
 
 The use of verify code edit text is to get a one-time code from the user,
 There is no default edit text in Android to get a one-time use code.<br>
